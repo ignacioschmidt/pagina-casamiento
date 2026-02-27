@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Toia & Nachi — 9 de mayo de 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
+  <style>
+    /* ─── Reset & Base ─────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream:       #faf7f2;
+      --warm:        #f0ebe1;
+      --stone:       #c4b89a;
+      --muted:       #9c8e7a;
+      --dark:        #2a2218;
+      --chocolate:   #3d2b1f;
+      --gold:        #b09060;
+      --serif:       'Cormorant Garamond', Georgia, serif;
+      --lora:        'Lora', Georgia, serif;
+      --sans:        'Jost', system-ui, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--cream);
+      color: var(--dark);
+      font-family: var(--sans);
+      font-weight: 300;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── Typography ───────────────────────────────────────── */
+    h1, h2, h3 { font-family: var(--serif); font-weight: 400; letter-spacing: 0.02em; }
+
+    /* ─── Utilities ────────────────────────────────────────── */
+    .section { padding: 56px 24px; max-width: 680px; margin: 0 auto; text-align: center; }
+    .divider {
+      width: 40px; height: 1px; background: var(--stone);
+      margin: 28px auto;
+    }
+    .label {
+      font-family: var(--sans);
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    /* ─── Buttons ──────────────────────────────────────────── */
+    .btn {
+      display: block;
+      width: 100%;
+      font-family: var(--sans);
+      font-size: 11px;
+      font-weight: 300;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      text-decoration: none;
+      text-align: center;
+      color: var(--dark);
+      border: 1px solid var(--stone);
+      padding: 16px 32px;
+      transition: background 0.25s, color 0.25s, border-color 0.25s;
+      cursor: pointer;
+      background: transparent;
+    }
+    .btn:hover {
+      background: var(--dark);
+      color: var(--cream);
+      border-color: var(--dark);
+    }
+    .btn-primary {
+      background: var(--dark);
+      color: var(--cream);
+      border-color: var(--dark);
+      padding: 14px 40px;
+      font-size: 11px;
+      border-width: 0.5px;
+    }
+    .btn-primary:hover {
+      background: transparent;
+      color: var(--dark);
+    }
+    @media (min-width: 640px) {
+      .btn { display: inline-block; width: auto; }
+    }
+
+    /* ─── HERO ─────────────────────────────────────────────── */
+    #hero {
+      position: relative;
+      width: 100%;
+      height: 100svh;
+      min-height: 520px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: var(--cream);
+    }
+
+    /* Floral SVG illustrations — left and right sides */
+    .hero-floral-left {
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 180px;
+      height: auto;
+      opacity: 0.85;
+      pointer-events: none;
+    }
+    .hero-floral-right {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%) scaleX(-1);
+      width: 180px;
+      height: auto;
+      opacity: 0.85;
+      pointer-events: none;
+    }
+    @media (max-width: 640px) {
+      .hero-floral-left  { width: 100px; }
+      .hero-floral-right { width: 100px; }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      color: var(--dark);
+      padding: 0 24px;
+    }
+
+    .hero-names {
+      font-family: var(--serif);
+      font-size: clamp(52px, 12vw, 96px);
+      font-weight: 300;
+      line-height: 1;
+      letter-spacing: 0.04em;
+      color: var(--dark);
+    }
+
+    .hero-amp {
+      font-style: italic;
+      font-size: 0.75em;
+    }
+
+    .hero-tagline {
+      margin-top: 22px;
+      font-family: var(--sans);
+      font-size: 11px;
+      font-weight: 300;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .hero-date {
+      margin-top: 10px;
+      font-family: var(--serif);
+      font-size: 18px;
+      font-style: italic;
+      color: var(--dark);
+      opacity: 0.8;
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      opacity: 0.45;
+      animation: nudge 2.4s ease-in-out infinite;
+    }
+    .hero-scroll span {
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .hero-scroll svg { color: var(--stone); }
+
+    @keyframes nudge {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50%       { transform: translateX(-50%) translateY(6px); }
+    }
+
+    /* ─── INTRO ────────────────────────────────────────────── */
+    #intro {
+      background: var(--cream);
+      padding: 56px 24px 48px;
+      text-align: center;
+    }
+    #intro .intro-heading {
+      font-family: var(--serif);
+      font-size: clamp(28px, 6vw, 44px);
+      font-weight: 300;
+      line-height: 1.25;
+      max-width: 560px;
+      margin: 0 auto 16px;
+    }
+    #intro .intro-sub {
+      color: var(--muted);
+      font-size: 14px;
+      letter-spacing: 0.04em;
+    }
+    #intro .intro-secondary {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 17px;
+      color: var(--muted);
+      max-width: 480px;
+      margin: 16px auto 0;
+      line-height: 1.7;
+    }
+
+    /* ─── INFO ─────────────────────────────────────────────── */
+    #info { background: var(--warm); }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 48px;
+    }
+
+    @media (min-width: 640px) {
+      .info-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    .info-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 20px;
+    }
+
+    .info-icon {
+      width: 44px;
+      height: 44px;
+      color: var(--muted);
+      flex-shrink: 0;
+    }
+
+    .info-card h3 {
+      font-family: var(--serif);
+      font-size: 22px;
+      font-weight: 400;
+    }
+
+    .info-card .time {
+      font-family: var(--serif);
+      font-size: 32px;
+      font-weight: 300;
+      color: var(--dark);
+      line-height: 1;
+      margin: 0;
+    }
+
+    .info-card .detail {
+      font-size: 13px;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+      margin-top: -12px;
+    }
+
+    .info-separator {
+      display: none;
+    }
+    @media (min-width: 640px) {
+      .info-separator {
+        display: block;
+        width: 1px;
+        background: var(--stone);
+        margin: 0 auto;
+        opacity: 0.5;
+        grid-row: 1;
+        grid-column: auto;
+        align-self: stretch;
+      }
+    }
+
+    /* ─── BANNER PHOTO ──────────────────────────────────────── */
+    #couple-photo {
+      width: 100%;
+      max-width: 100%;
+      margin: 0 auto;
+      padding: 0 16px;
+      background: var(--cream);
+    }
+    .couple-img-wrap {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 3 / 2;
+      background: var(--warm);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--stone);
+    }
+    @media (min-width: 640px) {
+      #couple-photo { max-width: 840px; padding: 0 24px 80px; }
+      .couple-img-wrap { aspect-ratio: 16 / 9; }
+    }
+
+    /* ─── DRESS CODE ───────────────────────────────────────── */
+    #dresscode { background: var(--warm); }
+    .dresscode-icon { color: var(--gold); margin-bottom: 8px; }
+    .dresscode-title {
+      font-family: var(--serif);
+      font-size: clamp(26px, 5vw, 38px);
+      font-weight: 300;
+    }
+    .dresscode-sub {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 22px;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+      margin-top: 10px;
+    }
+
+    /* ─── RSVP ─────────────────────────────────────────────── */
+    #rsvp { background: var(--chocolate); color: var(--cream); }
+    #rsvp .section { max-width: 560px; }
+    #rsvp .label { color: var(--stone); }
+    #rsvp .divider { background: var(--muted); }
+    #rsvp h2 {
+      font-family: var(--serif);
+      font-size: clamp(28px, 6vw, 44px);
+      font-weight: 300;
+      margin-bottom: 12px;
+    }
+    #rsvp p {
+      font-size: 14px;
+      color: var(--stone);
+      margin-bottom: 32px;
+    }
+    #rsvp .btn-primary {
+      background: var(--cream);
+      color: var(--chocolate);
+      border-color: var(--cream);
+      border-width: 0.5px;
+    }
+    #rsvp .btn-primary:hover {
+      background: transparent;
+      color: var(--cream);
+      border-color: var(--cream);
+    }
+
+    /* ─── GIFT ─────────────────────────────────────────────── */
+    #regalo { background: var(--cream); }
+    #regalo .regalo-floral { margin-bottom: 4px; }
+    #regalo h2 {
+      font-family: var(--serif);
+      font-size: clamp(24px, 5vw, 36px);
+      font-weight: 300;
+      margin-bottom: 12px;
+    }
+    #regalo p {
+      font-size: 14px;
+      color: var(--muted);
+      max-width: 420px;
+      margin: 0 auto 32px;
+      line-height: 1.8;
+    }
+
+    /* ─── FOOTER ───────────────────────────────────────────── */
+    footer {
+      background: var(--cream);
+      border-top: 1px solid var(--warm);
+      padding: 48px 24px;
+      text-align: center;
+    }
+    footer .footer-floral { margin-bottom: 20px; }
+    footer .footer-names {
+      font-family: var(--serif);
+      font-size: 20px;
+      font-weight: 300;
+      font-style: italic;
+      letter-spacing: 0.06em;
+    }
+    footer .footer-year {
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 8px;
+    }
+
+    /* ─── MODAL ────────────────────────────────────────────── */
+    .modal-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(42,34,24,0.7);
+      z-index: 100;
+      align-items: flex-end;
+      justify-content: center;
+      padding: 0;
+    }
+    .modal-backdrop.open { display: flex; }
+
+    .modal {
+      background: var(--cream);
+      max-width: 480px;
+      width: 100%;
+      padding: 48px 24px 48px;
+      position: relative;
+      max-height: 92svh;
+      overflow-y: auto;
+      border-radius: 12px 12px 0 0;
+    }
+    .modal::before {
+      content: '';
+      display: block;
+      width: 36px;
+      height: 4px;
+      background: var(--stone);
+      border-radius: 2px;
+      margin: 0 auto 28px;
+    }
+    @media (min-width: 640px) {
+      .modal::before { display: none; }
+    }
+    @media (min-width: 640px) {
+      .modal-backdrop {
+        align-items: center;
+        padding: 24px;
+      }
+      .modal {
+        padding: 48px 40px;
+        border-radius: 0;
+        max-height: 90svh;
+      }
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 20px; right: 20px;
+      background: none; border: none;
+      cursor: pointer;
+      color: var(--muted);
+      font-size: 22px;
+      line-height: 1;
+    }
+    .modal-close:hover { color: var(--dark); }
+
+    .modal h3 {
+      font-family: var(--serif);
+      font-size: 26px;
+      font-weight: 400;
+      margin-bottom: 24px;
+    }
+
+    .bank-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--warm);
+      gap: 12px;
+    }
+    .bank-row:last-of-type { border-bottom: none; }
+    .bank-label {
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      flex-shrink: 0;
+    }
+    .bank-value {
+      font-family: var(--serif);
+      font-size: 16px;
+      color: var(--dark);
+      text-align: right;
+    }
+    .copy-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--stone);
+      padding: 4px;
+      flex-shrink: 0;
+      transition: color 0.2s;
+    }
+    .copy-btn:hover { color: var(--dark); }
+    .copy-btn.copied { color: var(--dark); }
+
+    /* ─── RSVP MODAL / FORM ────────────────────────────────── */
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 20px;
+      text-align: left;
+    }
+    .form-group label {
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      font-family: var(--sans);
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--dark);
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid var(--stone);
+      padding: 8px 0;
+      outline: none;
+      transition: border-color 0.2s;
+      width: 100%;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--dark);
+    }
+    .form-group textarea { resize: none; height: 72px; }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 32px 0;
+    }
+    .form-success h3 {
+      font-family: var(--serif);
+      font-size: 28px;
+      font-weight: 300;
+    }
+    .form-success p { color: var(--muted); font-size: 14px; margin-top: 10px; }
+
+    /* ─── Responsive tweaks ────────────────────────────────── */
+    @media (max-width: 480px) {
+      .form-row { grid-template-columns: 1fr; }
+      .section { padding: 48px 20px; }
+      .info-card .time { font-size: 44px; }
+    }
+
+    @media (min-width: 640px) {
+      .section { padding: 80px 24px; }
+      #intro { padding: 80px 24px 64px; }
+      #couple-photo { padding: 0 24px 80px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══════════════════ HERO ══════════════════ -->
+  <section id="hero">
+
+    <!-- Floral illustration — left -->
+    <svg class="hero-floral-left" viewBox="0 0 120 300" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <!-- Main stem -->
+      <path d="M60 290 C58 260 54 230 56 200 C58 170 62 145 58 115 C54 85 48 60 52 30" stroke="#b09060" stroke-width="0.9" stroke-linecap="round"/>
+      <!-- Branch left 1 -->
+      <path d="M56 200 C44 192 30 186 18 178" stroke="#b09060" stroke-width="0.8" stroke-linecap="round"/>
+      <!-- Branch right 1 -->
+      <path d="M58 170 C70 162 82 154 94 148" stroke="#b09060" stroke-width="0.8" stroke-linecap="round"/>
+      <!-- Branch left 2 -->
+      <path d="M57 140 C46 130 34 122 22 116" stroke="#b09060" stroke-width="0.8" stroke-linecap="round"/>
+      <!-- Branch right 2 -->
+      <path d="M55 105 C66 96 78 88 88 78" stroke="#b09060" stroke-width="0.7" stroke-linecap="round"/>
+      <!-- Branch left 3 (top) -->
+      <path d="M52 68 C42 60 32 50 24 40" stroke="#b09060" stroke-width="0.7" stroke-linecap="round"/>
+
+      <!-- Leaf on branch left 1 -->
+      <ellipse cx="18" cy="178" rx="10" ry="5" transform="rotate(-20 18 178)" stroke="#c4b89a" stroke-width="0.7" fill="none"/>
+      <!-- Leaf on branch right 1 -->
+      <ellipse cx="94" cy="148" rx="11" ry="5" transform="rotate(15 94 148)" stroke="#c4b89a" stroke-width="0.7" fill="none"/>
+      <!-- Leaf on branch left 2 -->
+      <ellipse cx="22" cy="116" rx="10" ry="4.5" transform="rotate(-25 22 116)" stroke="#c4b89a" stroke-width="0.7" fill="none"/>
+      <!-- Leaf on branch right 2 -->
+      <ellipse cx="88" cy="78" rx="9" ry="4" transform="rotate(20 88 78)" stroke="#c4b89a" stroke-width="0.7" fill="none"/>
+      <!-- Leaf on branch left 3 -->
+      <ellipse cx="24" cy="40" rx="9" ry="4" transform="rotate(-30 24 40)" stroke="#c4b89a" stroke-width="0.7" fill="none"/>
+
+      <!-- Flower 1 — tip of stem -->
+      <circle cx="52" cy="28" r="3" stroke="#b09060" stroke-width="0.8" fill="none"/>
+      <ellipse cx="52" cy="20" rx="3.5" ry="5" transform="rotate(0 52 20)" stroke="#b09060" stroke-width="0.7" fill="none"/>
+      <ellipse cx="58" cy="23" rx="3.5" ry="5" transform="rotate(40 58 23)" stroke="#b09060" stroke-width="0.7" fill="none"/>
+      <ellipse cx="46" cy="23" rx="3.5" ry="5" transform="rotate(-40 46 23)" stroke="#b09060" stroke-width="0.7" fill="none"/>
+      <ellipse cx="60" cy="30" rx="3.5" ry="5" transform="rotate(70 60 30)" stroke="#b09060" stroke-width="0.7" fill="none"/>
+      <ellipse cx="44" cy="30" rx="3.5" ry="5" transform="rotate(-70 44 30)" stroke="#b09060" stroke-width="0.7" fill="none"/>
+
+      <!-- Flower 2 — end of branch right 1 -->
+      <circle cx="94" cy="146" r="2.5" stroke="#b09060" stroke-width="0.8" fill="none"/>
+      <ellipse cx="94" cy="139" rx="3" ry="4.5" transform="rotate(0 94 139)" stroke="#b09060" stroke-width="0.7" fill="none"/>
+      <ellipse cx="100" cy="142" rx="3" ry="4.5" transform="rotate(40 100 142)" stroke="#b09060" stroke-width="0.7" fill="none"/>
+      <ellipse cx="88" cy="142" rx="3" ry="4.5" transform="rotate(-40 88 142)" stroke="#b09060" stroke-width="0.7" fill="none"/>
+
+      <!-- Flower 3 — end of branch left 2 -->
+      <circle cx="22" cy="114" r="2.5" stroke="#b09060" stroke-width="0.8" fill="none"/>
+      <ellipse cx="22" cy="107" rx="3" ry="4.5" transform="rotate(0 22 107)" stroke="#b09060" stroke-width="0.7" fill="none"/>
+      <ellipse cx="28" cy="110" rx="3" ry="4.5" transform="rotate(40 28 110)" stroke="#b09060" stroke-width="0.7" fill="none"/>
+      <ellipse cx="16" cy="110" rx="3" ry="4.5" transform="rotate(-40 16 110)" stroke="#b09060" stroke-width="0.7" fill="none"/>
+
+      <!-- Bud — end of branch left 1 (smaller, closed) -->
+      <ellipse cx="16" cy="175" rx="4" ry="7" stroke="#b09060" stroke-width="0.7" fill="none"/>
+      <path d="M12 175 Q16 168 20 175" stroke="#b09060" stroke-width="0.6" fill="none"/>
+
+      <!-- Small bud on top left branch -->
+      <ellipse cx="24" cy="37" rx="3" ry="5" stroke="#b09060" stroke-width="0.7" fill="none"/>
+    </svg>
+
+    <!-- Floral illustration — right (mirrored via CSS scaleX) -->
+    <svg class="hero-floral-right" viewBox="0 0 120 300" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <!-- Same paths as left — CSS mirrors it -->
+      <path d="M60 290 C58 260 54 230 56 200 C58 170 62 145 58 115 C54 85 48 60 52 30" stroke="#b09060" stroke-width="0.9" stroke-linecap="round"/>
+      <path d="M56 200 C44 192 30 186 18 178" stroke="#b09060" stroke-width="0.8" stroke-linecap="round"/>
+      <path d="M58 170 C70 162 82 154 94 148" stroke="#b09060" stroke-width="0.8" stroke-linecap="round"/>
+      <path d="M57 140 C46 130 34 122 22 116" stroke="#b09060" stroke-width="0.8" stroke-linecap="round"/>
+      <path d="M55 105 C66 96 78 88 88 78" stroke="#b09060" stroke-width="0.7" stroke-linecap="round"/>
+      <path d="M52 68 C42 60 32 50 24 40" stroke="#b09060" stroke-width="0.7" stroke-linecap="round"/>
+      <ellipse cx="18" cy="178" rx="10" ry="5" transform="rotate(-20 18 178)" stroke="#c4b89a" stroke-width="0.7" fill="none"/>
+      <ellipse cx="94" cy="148" rx="11" ry="5" transform="rotate(15 94 148)" stroke="#c4b89a" stroke-width="0.7" fill="none"/>
+      <ellipse cx="22" cy="116" rx="10" ry="4.5" transform="rotate(-25 22 116)" stroke="#c4b89a" stroke-width="0.7" fill="none"/>
+      <ellipse cx="88" cy="78" rx="9" ry="4" transform="rotate(20 88 78)" stroke="#c4b89a" stroke-width="0.7" fill="none"/>
+      <ellipse cx="24" cy="40" rx="9" ry="4" transform="rotate(-30 24 40)" stroke="#c4b89a" stroke-width="0.7" fill="none"/>
+      <circle cx="52" cy="28" r="3" stroke="#b09060" stroke-width="0.8" fill="none"/>
+      <ellipse cx="52" cy="20" rx="3.5" ry="5" transform="rotate(0 52 20)" stroke="#b09060" stroke-width="0.7" fill="none"/>
+      <ellipse cx="58" cy="23" rx="3.5" ry="5" transform="rotate(40 58 23)" stroke="#b09060" stroke-width="0.7" fill="none"/>
+      <ellipse cx="46" cy="23" rx="3.5" ry="5" transform="rotate(-40 46 23)" stroke="#b09060" stroke-width="0.7" fill="none"/>
+      <ellipse cx="60" cy="30" rx="3.5" ry="5" transform="rotate(70 60 30)" stroke="#b09060" stroke-width="0.7" fill="none"/>
+      <ellipse cx="44" cy="30" rx="3.5" ry="5" transform="rotate(-70 44 30)" stroke="#b09060" stroke-width="0.7" fill="none"/>
+      <circle cx="94" cy="146" r="2.5" stroke="#b09060" stroke-width="0.8" fill="none"/>
+      <ellipse cx="94" cy="139" rx="3" ry="4.5" transform="rotate(0 94 139)" stroke="#b09060" stroke-width="0.7" fill="none"/>
+      <ellipse cx="100" cy="142" rx="3" ry="4.5" transform="rotate(40 100 142)" stroke="#b09060" stroke-width="0.7" fill="none"/>
+      <ellipse cx="88" cy="142" rx="3" ry="4.5" transform="rotate(-40 88 142)" stroke="#b09060" stroke-width="0.7" fill="none"/>
+      <circle cx="22" cy="114" r="2.5" stroke="#b09060" stroke-width="0.8" fill="none"/>
+      <ellipse cx="22" cy="107" rx="3" ry="4.5" transform="rotate(0 22 107)" stroke="#b09060" stroke-width="0.7" fill="none"/>
+      <ellipse cx="28" cy="110" rx="3" ry="4.5" transform="rotate(40 28 110)" stroke="#b09060" stroke-width="0.7" fill="none"/>
+      <ellipse cx="16" cy="110" rx="3" ry="4.5" transform="rotate(-40 16 110)" stroke="#b09060" stroke-width="0.7" fill="none"/>
+      <ellipse cx="16" cy="175" rx="4" ry="7" stroke="#b09060" stroke-width="0.7" fill="none"/>
+      <path d="M12 175 Q16 168 20 175" stroke="#b09060" stroke-width="0.6" fill="none"/>
+      <ellipse cx="24" cy="37" rx="3" ry="5" stroke="#b09060" stroke-width="0.7" fill="none"/>
+    </svg>
+
+    <div class="hero-content">
+      <div class="hero-names">Toia <span class="hero-amp">&amp;</span> Nachi</div>
+      <div class="hero-tagline">Nos casamos</div>
+      <div class="hero-date">9 de mayo de 2026</div>
+    </div>
+
+    <div class="hero-scroll">
+      <span>Ver más</span>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round">
+        <polyline points="6 9 12 15 18 9"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ══════════════════ INTRO ══════════════════ -->
+  <section id="intro">
+    <h2 class="intro-heading">Nos casamos y queremos celebrarlo con vos</h2>
+    <p class="intro-secondary">Queremos compartir este día con quienes hicieron parte de nuestra historia.</p>
+  </section>
+
+  <!-- ══════════════════ INFO ══════════════════ -->
+  <section id="info">
+    <div class="section">
+      <p style="font-family:var(--serif);font-size:22px;font-weight:400;color:var(--dark);margin-bottom:8px">Sábado 9 de mayo de 2026</p>
+      <div class="divider"></div>
+      <div class="info-grid">
+
+        <!-- Ceremonia -->
+        <div class="info-card">
+          <!-- Botanical icon: sprig with cross-like floral for ceremony -->
+          <svg class="info-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M22 38 C22 28 22 18 22 8" stroke="#9c8e7a" stroke-width="0.9" stroke-linecap="round"/>
+            <path d="M22 28 C16 24 10 22 6 20" stroke="#9c8e7a" stroke-width="0.8" stroke-linecap="round"/>
+            <path d="M22 22 C28 18 34 16 38 14" stroke="#9c8e7a" stroke-width="0.8" stroke-linecap="round"/>
+            <ellipse cx="6" cy="20" rx="6" ry="3" transform="rotate(-15 6 20)" stroke="#c4b89a" stroke-width="0.7" fill="none"/>
+            <ellipse cx="38" cy="14" rx="6" ry="3" transform="rotate(10 38 14)" stroke="#c4b89a" stroke-width="0.7" fill="none"/>
+            <circle cx="22" cy="7" r="2" stroke="#b09060" stroke-width="0.8" fill="none"/>
+            <ellipse cx="22" cy="3" rx="2" ry="3" stroke="#b09060" stroke-width="0.7" fill="none"/>
+            <ellipse cx="25.5" cy="5" rx="2" ry="3" transform="rotate(35 25.5 5)" stroke="#b09060" stroke-width="0.7" fill="none"/>
+            <ellipse cx="18.5" cy="5" rx="2" ry="3" transform="rotate(-35 18.5 5)" stroke="#b09060" stroke-width="0.7" fill="none"/>
+          </svg>
+          <span class="label" style="margin-bottom:0">Ceremonia</span>
+          <h3>Iglesia Santa Rita</h3>
+          <div class="time">15:30</div>
+          <p class="detail">hs.</p>
+          <a href="https://maps.google.com/?q=Iglesia+Santa+Rita+Buenos+Aires" target="_blank" rel="noopener" class="btn">Ver ubicación</a>
+        </div>
+
+        <!-- Fiesta -->
+        <div class="info-card">
+          <!-- Botanical icon: champagne flute with leaf for celebration -->
+          <svg class="info-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M22 38 L22 20" stroke="#9c8e7a" stroke-width="0.9" stroke-linecap="round"/>
+            <path d="M16 20 L28 20" stroke="#9c8e7a" stroke-width="0.8" stroke-linecap="round"/>
+            <path d="M16 20 C15 14 16 8 22 6 C28 8 29 14 28 20" stroke="#9c8e7a" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M16 14 L14 11 C11 8 10 6 12 4" stroke="#9c8e7a" stroke-width="0.7" stroke-linecap="round"/>
+            <ellipse cx="11" cy="4" rx="5" ry="2.5" transform="rotate(-30 11 4)" stroke="#c4b89a" stroke-width="0.7" fill="none"/>
+            <path d="M28 14 L30 11 C33 8 34 6 32 4" stroke="#9c8e7a" stroke-width="0.7" stroke-linecap="round"/>
+            <ellipse cx="33" cy="4" rx="5" ry="2.5" transform="rotate(30 33 4)" stroke="#c4b89a" stroke-width="0.7" fill="none"/>
+          </svg>
+          <span class="label" style="margin-bottom:0">Fiesta</span>
+          <h3>Espacio Pilar</h3>
+          <div class="time">17:30</div>
+          <p class="detail">hs.</p>
+          <a href="https://maps.google.com/?q=Espacio+Pilar+Buenos+Aires" target="_blank" rel="noopener" class="btn">Ver ubicación</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════ BANNER PHOTO ══════════════════ -->
+  <div id="couple-photo">
+    <div class="couple-img-wrap">
+      <img src="img/foto-banner.jpeg" alt="Toia & Nachi" style="width:100%;height:100%;object-fit:cover;object-position:center 30%">
+    </div>
+  </div>
+
+  <!-- ══════════════════ DRESS CODE ══════════════════ -->
+  <section id="dresscode">
+    <div class="section">
+      <div class="divider"></div>
+      <div class="dresscode-icon">
+        <!-- Botanical leaf/branch icon for dress code -->
+        <svg width="36" height="36" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M22 40 C22 28 20 16 18 8" stroke="#b09060" stroke-width="0.9" stroke-linecap="round"/>
+          <path d="M20 28 C14 24 8 22 4 18" stroke="#b09060" stroke-width="0.8" stroke-linecap="round"/>
+          <path d="M19 18 C25 14 31 10 36 6" stroke="#b09060" stroke-width="0.8" stroke-linecap="round"/>
+          <ellipse cx="4" cy="18" rx="7" ry="3.5" transform="rotate(-20 4 18)" stroke="#b09060" stroke-width="0.7" fill="none"/>
+          <ellipse cx="36" cy="6" rx="7" ry="3.5" transform="rotate(15 36 6)" stroke="#b09060" stroke-width="0.7" fill="none"/>
+          <path d="M20 10 C16 6 14 2 18 1 C22 0 22 4 20 10" stroke="#b09060" stroke-width="0.7" stroke-linecap="round" fill="none"/>
+        </svg>
+      </div>
+      <h2 class="dresscode-title">Dress code</h2>
+      <p class="dresscode-sub">Elegante</p>
+    </div>
+  </section>
+
+  <!-- ══════════════════ RSVP ══════════════════ -->
+  <section id="rsvp">
+    <div class="section">
+      <span class="label">Confirmá tu asistencia</span>
+      <div class="divider"></div>
+      <h2>Confirmá tu lugar</h2>
+      <p>Nos encantaría contarte entre nuestros invitados.</p>
+      <button class="btn btn-primary" onclick="openRsvpModal()">RSVP</button>
+    </div>
+  </section>
+
+  <!-- ══════════════════ REGALO ══════════════════ -->
+  <section id="regalo">
+    <div class="section">
+      <span class="label">Regalos</span>
+      <div class="divider"></div>
+      <!-- Mini floral motif -->
+      <div class="regalo-floral">
+        <svg width="48" height="48" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" style="opacity:0.7">
+          <path d="M60 110 C60 85 58 60 60 35 C62 10 60 5 60 5" stroke="#b09060" stroke-width="1" stroke-linecap="round"/>
+          <path d="M59 70 C48 62 36 58 24 52" stroke="#b09060" stroke-width="0.9" stroke-linecap="round"/>
+          <path d="M60 52 C72 44 84 38 96 32" stroke="#b09060" stroke-width="0.9" stroke-linecap="round"/>
+          <ellipse cx="24" cy="52" rx="13" ry="6" transform="rotate(-20 24 52)" stroke="#c4b89a" stroke-width="0.8" fill="none"/>
+          <ellipse cx="96" cy="32" rx="13" ry="6" transform="rotate(15 96 32)" stroke="#c4b89a" stroke-width="0.8" fill="none"/>
+          <!-- Center flower -->
+          <circle cx="60" cy="5" r="4" stroke="#b09060" stroke-width="0.9" fill="none"/>
+          <ellipse cx="60" cy="-3" rx="4" ry="6" stroke="#b09060" stroke-width="0.8" fill="none"/>
+          <ellipse cx="67" cy="0" rx="4" ry="6" transform="rotate(40 67 0)" stroke="#b09060" stroke-width="0.8" fill="none"/>
+          <ellipse cx="53" cy="0" rx="4" ry="6" transform="rotate(-40 53 0)" stroke="#b09060" stroke-width="0.8" fill="none"/>
+        </svg>
+      </div>
+      <h2>Un detalle</h2>
+      <p>Lo que más nos importa es que estés con nosotros, pero si querés hacernos un regalo…</p>
+      <button class="btn" onclick="openGiftModal()">Hacé tu regalo</button>
+    </div>
+  </section>
+
+  <!-- ══════════════════ FOOTER ══════════════════ -->
+  <footer>
+    <!-- Mini floral motif -->
+    <div class="footer-floral">
+      <svg width="40" height="40" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" style="opacity:0.55">
+        <path d="M40 75 C40 55 38 35 40 18 C42 5 40 2 40 2" stroke="#b09060" stroke-width="0.9" stroke-linecap="round"/>
+        <path d="M39 48 C32 42 24 38 16 34" stroke="#b09060" stroke-width="0.8" stroke-linecap="round"/>
+        <path d="M40 34 C48 28 56 24 64 20" stroke="#b09060" stroke-width="0.8" stroke-linecap="round"/>
+        <ellipse cx="16" cy="34" rx="9" ry="4" transform="rotate(-20 16 34)" stroke="#c4b89a" stroke-width="0.7" fill="none"/>
+        <ellipse cx="64" cy="20" rx="9" ry="4" transform="rotate(15 64 20)" stroke="#c4b89a" stroke-width="0.7" fill="none"/>
+        <circle cx="40" cy="2" r="3" stroke="#b09060" stroke-width="0.8" fill="none"/>
+        <ellipse cx="40" cy="-4" rx="3" ry="4.5" stroke="#b09060" stroke-width="0.7" fill="none"/>
+        <ellipse cx="45" cy="-1" rx="3" ry="4.5" transform="rotate(40 45 -1)" stroke="#b09060" stroke-width="0.7" fill="none"/>
+        <ellipse cx="35" cy="-1" rx="3" ry="4.5" transform="rotate(-40 35 -1)" stroke="#b09060" stroke-width="0.7" fill="none"/>
+      </svg>
+    </div>
+    <div class="footer-names">Toia &amp; Nachi</div>
+    <div class="footer-year">9 · 05 · 2026</div>
+  </footer>
+
+  <!-- ══════════════════ MODAL GIFT ══════════════════ -->
+  <div id="modal-gift" class="modal-backdrop" onclick="closeModalOnBackdrop(event,'modal-gift')">
+    <div class="modal">
+      <button class="modal-close" onclick="closeModal('modal-gift')" aria-label="Cerrar">&times;</button>
+      <h3>Datos bancarios</h3>
+
+      <div class="bank-row">
+        <span class="bank-label">Titular</span>
+        <span class="bank-value">
+          <!-- ░░ REEMPLAZAR con nombre del titular ░░ -->
+          Nombre Apellido
+        </span>
+      </div>
+      <div class="bank-row">
+        <span class="bank-label">Banco</span>
+        <span class="bank-value">
+          <!-- ░░ REEMPLAZAR con nombre del banco ░░ -->
+          Banco XYZ
+        </span>
+      </div>
+      <div class="bank-row">
+        <span class="bank-label">CBU</span>
+        <span class="bank-value" id="cbu-value">
+          <!-- ░░ REEMPLAZAR con CBU real ░░ -->
+          0000000000000000000000
+        </span>
+        <button class="copy-btn" onclick="copyText('cbu-value', this)" title="Copiar CBU">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+        </button>
+      </div>
+      <div class="bank-row">
+        <span class="bank-label">Alias</span>
+        <span class="bank-value" id="alias-value">
+          <!-- ░░ REEMPLAZAR con alias real ░░ -->
+          ALIAS.CASAMIENTO
+        </span>
+        <button class="copy-btn" onclick="copyText('alias-value', this)" title="Copiar Alias">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════ MODAL RSVP ══════════════════ -->
+  <div id="modal-rsvp" class="modal-backdrop" onclick="closeModalOnBackdrop(event,'modal-rsvp')">
+    <div class="modal">
+      <button class="modal-close" onclick="closeModal('modal-rsvp')" aria-label="Cerrar">&times;</button>
+
+      <div id="rsvp-form-wrap">
+        <h3>Confirmar asistencia</h3>
+
+        <form id="rsvp-form" onsubmit="submitRsvp(event)" style="margin-top:28px">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="nombre">Nombre</label>
+              <input type="text" id="nombre" name="nombre" required placeholder="Tu nombre" />
+            </div>
+            <div class="form-group">
+              <label for="apellido">Apellido</label>
+              <input type="text" id="apellido" name="apellido" required placeholder="Tu apellido" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="mail">Email</label>
+            <input type="email" id="mail" name="mail" required placeholder="tu@email.com" />
+          </div>
+
+          <div class="form-group">
+            <label for="acompañantes">¿Con cuántos acompañantes venís? (sin contarte)</label>
+            <select id="acompañantes" name="acompañantes">
+              <option value="0">Solo/a</option>
+              <option value="1">1 acompañante</option>
+              <option value="2">2 acompañantes</option>
+              <option value="3">3 acompañantes</option>
+              <option value="4">4 acompañantes</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="dieta">Restricciones alimentarias</label>
+            <textarea id="dieta" name="dieta" placeholder="Vegano, celíaco, alergia a... (dejá vacío si no aplica)"></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width:100%;margin-top:8px">Confirmar</button>
+        </form>
+      </div>
+
+      <div class="form-success" id="rsvp-success">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" style="margin:0 auto 20px">
+          <circle cx="12" cy="12" r="10"/>
+          <polyline points="9 12 11 14 15 10"/>
+        </svg>
+        <h3>¡Gracias!</h3>
+        <p>Ya anotamos tu confirmación.<br>Nos vemos el 9 de mayo.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══════════════════ JS ══════════════════ -->
+  <script>
+    /* ── Modals ── */
+    function openModal(id) {
+      document.getElementById(id).classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeModal(id) {
+      document.getElementById(id).classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    function closeModalOnBackdrop(e, id) {
+      if (e.target === e.currentTarget) closeModal(id);
+    }
+    function openGiftModal()  { openModal('modal-gift'); }
+    function openRsvpModal()  {
+      // Reset form state
+      document.getElementById('rsvp-form-wrap').style.display = '';
+      document.getElementById('rsvp-success').style.display   = 'none';
+      document.getElementById('rsvp-form').reset();
+      openModal('modal-rsvp');
+    }
+
+    /* ── RSVP submit ──
+       Por defecto muestra el mensaje de éxito localmente.
+       Para conectar a un backend real (Formspree, etc.):
+       1. Cambiá el <form> action="https://formspree.io/f/XXXXXX" method="POST"
+       2. Quitá el onsubmit="submitRsvp(event)" y este handler.
+    */
+    function submitRsvp(e) {
+      e.preventDefault();
+      document.getElementById('rsvp-form-wrap').style.display = 'none';
+      document.getElementById('rsvp-success').style.display   = 'flex';
+      document.getElementById('rsvp-success').style.flexDirection = 'column';
+      document.getElementById('rsvp-success').style.alignItems = 'center';
+    }
+
+    /* ── Copy to clipboard ── */
+    function copyText(id, btn) {
+      const text = document.getElementById(id).textContent.trim();
+      navigator.clipboard.writeText(text).then(() => {
+        btn.classList.add('copied');
+        btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>';
+        setTimeout(() => {
+          btn.classList.remove('copied');
+          btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>';
+        }, 2000);
+      });
+    }
+
+    /* ── Keyboard close ── */
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') {
+        closeModal('modal-gift');
+        closeModal('modal-rsvp');
+      }
+    });
+  </script>
+</body>
+</html>
