@@ -33,13 +33,10 @@ Sitio de invitación de casamiento para Toia & Nachi, boda el **9 de mayo de 202
 
 Sitio 100% estático de una sola página. Estructura de secciones:
 
-1. **#hero** — Foto apaisada, nombres ("Toia & Nachi" en una línea), venues side-by-side (Iglesia Santa Rita + Espacio Pilar) con links "ver ubicación", countdown en vivo, botón sutil RSVP
-2. **Deco image** — `img/01.jpg` (entre hero y dresscode)
-3. **#dresscode** — Código de vestimenta "Elegante" con paleta de colores
-4. **Deco image** — `img/02.jpg` (entre dresscode y foto)
-5. **#couple-photo** — Banner con foto de la pareja
-6. **Deco image** — `img/03.jpg` (entre foto y regalos)
-7. **#regalo** — Datos bancarios (abre modal)
+1. **#hero** — Foto apaisada (hero.jpeg), nombres ("Toia & Nachi" en una línea), venues side-by-side con links "ver ubicación", countdown en vivo, botón sutil RSVP. Sin decoraciones botánicas.
+2. **#dresscode** — Código de vestimenta "Elegante" con paleta de colores
+3. **#couple-photo** — Banner con foto de la pareja (foto-banner.jpeg)
+4. **#regalo** — Datos bancarios (abre modal)
 
 **Sin footer.** La página termina en la sección de regalos.
 
@@ -61,7 +58,7 @@ Sitio 100% estático de una sola página. Estructura de secciones:
 --terracotta: #b87560  --forest: #2d3d2e
 ```
 
-**Imágenes decorativas (`.section-deco`):** full-width con object-fit cover, 180px alto mobile / 260px desktop.
+**Imágenes botánicas PNG** (`img/01.png`, `img/02.png`, `img/03.png`): disponibles con fondo transparente, actualmente no en uso en el HTML.
 
 ## Build & test
 
@@ -83,4 +80,4 @@ open index.html
 
 | Date | Change |
 |------|--------|
-| 2026-02-28 | Rediseño completo: hero con foto apaisada + venues side-by-side + countdown. Eliminadas secciones: intro, info/plan del día, segundo RSVP, footer. Orden final: Hero → Deco → Dresscode → Deco → Foto → Deco → Regalos. Imágenes decorativas 01/02/03.jpg entre secciones. |
+| 2026-02-28 | Rediseño completo: hero con foto apaisada + venues side-by-side + countdown. Eliminadas secciones: intro, info/plan del día, segundo RSVP, footer. Orden final: Hero → Dresscode → Foto → Regalos. Botánicas PNG con fondo transparente generadas pero no en uso actualmente. |
