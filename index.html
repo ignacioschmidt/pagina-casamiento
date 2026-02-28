@@ -114,7 +114,14 @@
       display: block;
     }
     @media (min-width: 640px) {
-      .hero-photo { aspect-ratio: 5 / 2; }
+      .hero-photo {
+        max-width: 600px;
+        margin: 0 auto;
+        aspect-ratio: 3 / 2;
+      }
+      .hero-photo img {
+        object-position: center 88%;
+      }
     }
 
     .hero-info {
@@ -258,8 +265,10 @@
     .dresscode-icon { color: var(--mauve); margin-bottom: 12px; }
     .dresscode-title { font-family: var(--serif); font-size: clamp(26px, 5vw, 38px); font-weight: 300; }
     .dresscode-sub {
-      font-family: var(--script);
-      font-size: 34px;
+      font-family: var(--serif);
+      font-size: clamp(22px, 5vw, 30px);
+      font-weight: 300;
+      font-style: italic;
       color: var(--mauve);
       margin-top: 8px;
       display: block;
@@ -274,18 +283,6 @@
       margin-left: auto;
       margin-right: auto;
       line-height: 1.7;
-    }
-    .color-swatches {
-      display: flex;
-      gap: 10px;
-      justify-content: center;
-      margin-top: 28px;
-    }
-    .swatch {
-      width: 34px;
-      height: 34px;
-      border-radius: 50%;
-      border: 1px solid rgba(0,0,0,0.1);
     }
 
     /* ─── BANNER PHOTO ──────────────────────────────────────── */
@@ -501,14 +498,6 @@
       </div>
       <h2 class="dresscode-title">Dress code</h2>
       <span class="dresscode-sub">Elegante</span>
-      <p class="dresscode-note">Y con ganas de bailar. Calzado cómodo no estuvo de más.</p>
-      <div class="color-swatches" aria-label="Paleta de colores sugerida">
-        <div class="swatch" style="background:#f5edef" title="Blush"></div>
-        <div class="swatch" style="background:#e8ede9" title="Sage"></div>
-        <div class="swatch" style="background:#faf7f2" title="Ivory"></div>
-        <div class="swatch" style="background:#c4b89a" title="Stone"></div>
-        <div class="swatch" style="background:#2a2218" title="Dark"></div>
-      </div>
     </div>
   </section>
 
@@ -527,8 +516,8 @@
       <div class="regalo-floral" aria-hidden="true">
         <img src="img/botanical-regalo.png" alt="" style="width:110px;height:110px;object-fit:contain;display:block;margin:0 auto;">
       </div>
-      <h2>Si querés mandarnos algo de cariño</h2>
-      <p>Lo que más importa es que estés con nosotros. Pero si querés sumar un regalito, lo más fácil es una transferencia.</p>
+      <h2>Tu presencia es nuestro mejor regalo</h2>
+      <p>Si además querés tener un detalle con nosotros, podés hacerlo a través de una transferencia.</p>
       <button class="btn btn-sage" onclick="openGiftModal()">Ver datos bancarios</button>
     </div>
   </section>
