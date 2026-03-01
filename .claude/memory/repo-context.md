@@ -27,14 +27,16 @@ Sitio de invitación de casamiento para Toia & Nachi, boda el **9 de mayo de 202
 | `img/02.jpg` | Imagen decorativa entre dresscode y foto banner |
 | `img/03.jpg` | Imagen decorativa entre foto banner y regalos |
 | `img/foto-banner.jpeg` | Foto de la pareja en sección banner central |
-| `img/botanical-regalo.png` | Ilustración watercolor — sección regalo (1:1) |
+| `img/regalo.png` | Ícono de regalo — sección regalos (320×320, sin fondo) |
+| `img/FONDO.png` | Imagen de fondo del hero (cover, opacity 0.45) |
+| `img/DIVISOR DRESS CODE.png` | Divisor visual entre hero y dress code |
 
 ## Architecture
 
 Sitio 100% estático de una sola página. Estructura de secciones:
 
 1. **#hero** — Foto apaisada (hero.jpeg), nombres ("Toia & Nachi" en una línea), venues side-by-side con links "ver ubicación", countdown en vivo, botón sutil RSVP. Sin decoraciones botánicas.
-2. **#dresscode** — Código de vestimenta "Elegante" con paleta de colores
+2. **#dresscode** — Código de vestimenta "Elegante", con divisor decorativo entre hero y dresscode
 3. **#couple-photo** — Banner con foto de la pareja (foto-banner.jpeg)
 4. **#regalo** — Datos bancarios (abre modal)
 
@@ -49,7 +51,7 @@ Sitio 100% estático de una sola página. Estructura de secciones:
 - `Dancing Script` — acentos handwritten (fecha, dresscode)
 - `Jost` — sans-serif general
 
-**Paleta (variables CSS):**
+**Paleta (variables CSS + colores hardcodeados):**
 ```
 --cream: #faf7f2   --warm: #f0ebe1    --stone: #c4b89a
 --muted: #9c8e7a   --dark: #2a2218    --gold: #b09060
@@ -58,7 +60,15 @@ Sitio 100% estático de una sola página. Estructura de secciones:
 --terracotta: #b87560  --forest: #2d3d2e
 ```
 
-**Imágenes botánicas PNG** (`img/01.png`, `img/02.png`, `img/03.png`): disponibles con fondo transparente, actualmente no en uso en el HTML.
+**Colores específicos por sección (hardcodeados):**
+| Elemento | Color |
+|----------|-------|
+| Nombres "Nachi & Toia" + fecha | `#898d75` |
+| Venues (Iglesia, Espacio Pilar) + horarios | `#536749` |
+| Cuenta regresiva (números) | `#7c829a` |
+| Botón confirmar asistencia (texto y borde) | `#898d75` |
+| Dress code (título) | `#898d75` |
+| "Elegante" (subtítulo) | `#5b1d1d` |
 
 ## Build & test
 
@@ -80,4 +90,5 @@ open index.html
 
 | Date | Change |
 |------|--------|
-| 2026-02-28 | Rediseño completo: hero con foto apaisada + venues side-by-side + countdown. Eliminadas secciones: intro, info/plan del día, segundo RSVP, footer. Orden final: Hero → Dresscode → Foto → Regalos. Botánicas PNG con fondo transparente generadas pero no en uso actualmente. |
+| 2026-02-28 | Rediseño completo: hero con foto apaisada + venues side-by-side + countdown. Eliminadas secciones: intro, info/plan del día, segundo RSVP, footer. Orden final: Hero → Dresscode → Foto → Regalos. |
+| 2026-02-28 | Nueva paleta cromática por sección. Fondo hero con FONDO.png. Divisor decorativo hero↔dresscode. Imagen regalo.png (320px) reemplaza botánica. Dress code: sans-serif uppercase para "Elegante". |
