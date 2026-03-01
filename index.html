@@ -288,13 +288,12 @@
     .dresscode-icon { color: var(--mauve); margin-bottom: 12px; }
     .dresscode-title { font-family: var(--serif); font-size: clamp(32px, 6vw, 46px); font-weight: 300; color: #898d75; }
     .dresscode-sub {
-      font-family: var(--sans);
-      font-size: clamp(14px, 3.5vw, 18px);
-      font-weight: 400;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: #5b1d1d;
-      margin-top: 12px;
+      font-family: var(--serif);
+      font-size: clamp(26px, 5.5vw, 34px);
+      font-weight: 300;
+      font-style: italic;
+      color: #898d75;
+      margin-top: 4px;
       display: block;
     }
     .dresscode-note {
@@ -330,8 +329,8 @@
     #regalo { background: var(--sage-light); }
     #regalo .regalo-floral { margin-bottom: -53px; margin-top: -60px; }
     #regalo .regalo-floral img { mix-blend-mode: multiply; }
-    #regalo h2 { font-family: var(--serif); font-size: clamp(24px, 5vw, 36px); font-weight: 300; margin-bottom: 12px; }
-    #regalo p { font-size: 14px; color: var(--muted); max-width: 400px; margin: 0 auto 32px; line-height: 1.8; }
+    #regalo h2 { font-family: var(--serif); font-size: clamp(24px, 5vw, 36px); font-weight: 300; margin-bottom: 12px; color: #898d75; }
+    #regalo p { font-size: 14px; color: #898d75; max-width: 400px; margin: 0 auto 32px; line-height: 1.8; }
 
 
     /* ─── MODAL ─────────────────────────────────────────────── */
@@ -518,13 +517,11 @@
   <!-- ══════════════════ REGALO ══════════════════ -->
   <section id="regalo">
     <div class="section">
-      <span class="label">Regalos</span>
-      <div class="divider" style="background:var(--sage);opacity:0.4"></div>
       <div class="regalo-floral" aria-hidden="true">
         <img src="img/regalo.png" alt="" style="width:213px;height:213px;object-fit:contain;display:block;margin:0 auto;">
       </div>
-      <h2>Tu presencia es nuestro mejor regalo</h2>
-      <p>Si además querés tener un detalle con nosotros, podés hacerlo a través de una transferencia.</p>
+      <h2>Regalo</h2>
+      <p>Si quisieran hacernos un regalo, les dejamos la información acá abajo:</p>
       <button class="btn" onclick="openGiftModal()" style="color:#898d75;border-color:#898d75">Ver datos bancarios</button>
     </div>
   </section>
