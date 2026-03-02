@@ -106,7 +106,7 @@
       z-index: 0;
     }
     #hero > * { position: relative; z-index: 1; }
-    #dresscode { position: relative; overflow: visible; padding-top: 12px; }
+    #dresscode { overflow: visible; padding-top: 12px; }
     .hero-dresscode-divider {
       position: absolute;
       top: 0;
@@ -284,7 +284,10 @@
     .hero-cta { margin-bottom: 8px; }
 
     /* ─── DRESS CODE ────────────────────────────────────────── */
-    #dresscode { background: var(--mauve-light); }
+    #dresscode {
+      background: linear-gradient(rgba(250,247,242,0.55), rgba(250,247,242,0.55)), url('img/FONDO.png') center / cover;
+      position: relative;
+    }
     .dresscode-icon { color: var(--mauve); margin-bottom: 12px; }
     .dresscode-title { font-family: var(--serif); font-size: clamp(32px, 6vw, 46px); font-weight: 300; color: #898d75; }
     .dresscode-sub {
@@ -309,7 +312,7 @@
     }
 
     /* ─── BANNER PHOTO ──────────────────────────────────────── */
-    #couple-photo { width: 100%; padding: 0 16px; background: var(--cream); }
+    #couple-photo { width: 100%; padding: 0; background: var(--cream); }
     .couple-img-wrap {
       width: 100%;
       aspect-ratio: 3 / 2;
