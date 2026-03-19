@@ -391,17 +391,43 @@
     }
     .modal-close:hover { color: var(--dark); }
     .modal h3 { font-family: var(--serif); font-size: 26px; font-weight: 400; margin-bottom: 24px; }
+    .bank-tabs {
+      display: flex;
+      gap: 0;
+      margin-bottom: 20px;
+      border-bottom: 1px solid var(--warm);
+      flex-wrap: wrap;
+    }
+    .bank-tab {
+      background: none;
+      border: none;
+      border-bottom: 2px solid transparent;
+      padding: 10px 14px;
+      cursor: pointer;
+      font-family: var(--sans);
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .bank-tab:hover { color: var(--dark); }
+    .bank-tab.active { color: var(--dark); border-bottom-color: var(--sage); }
+    .bank-panel { display: none; }
+    .bank-panel.active { display: block; }
     .bank-row {
       display: flex;
-      justify-content: space-between;
-      align-items: center;
+      flex-direction: column;
+      align-items: flex-start;
       padding: 14px 0;
       border-bottom: 1px solid var(--warm);
-      gap: 12px;
+      gap: 4px;
+      position: relative;
     }
     .bank-row:last-of-type { border-bottom: none; }
     .bank-label { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); flex-shrink: 0; }
-    .bank-value { font-family: var(--serif); font-size: 16px; color: var(--dark); text-align: right; }
+    .bank-value { font-family: var(--serif); font-size: 16px; color: var(--dark); word-break: break-word; }
+    .bank-row .copy-btn { position: absolute; right: 0; bottom: 14px; }
     .copy-btn { background: none; border: none; cursor: pointer; color: var(--stone); padding: 4px; flex-shrink: 0; transition: color 0.2s; }
     .copy-btn:hover { color: var(--dark); }
     .copy-btn.copied { color: var(--dark); }
@@ -661,40 +687,139 @@
     <div class="modal">
       <button class="modal-close" onclick="closeModal('modal-gift')" aria-label="Cerrar">&times;</button>
       <h3>Datos bancarios</h3>
-      <div class="bank-row">
-        <span class="bank-label">Titular</span>
-        <span class="bank-value">
-          <!-- ░░ REEMPLAZAR con nombre del titular ░░ -->
-          Nombre Apellido
-        </span>
+
+      <div class="bank-tabs">
+        <button class="bank-tab active" onclick="switchBankTab('ar-pesos', this)">ARS $</button>
+        <button class="bank-tab" onclick="switchBankTab('ar-usd', this)">USD 🇦🇷</button>
+        <button class="bank-tab" onclick="switchBankTab('us-usd', this)">USD 🇺🇸</button>
+        <button class="bank-tab" onclick="switchBankTab('eu-eur', this)">EUR 🇪🇺</button>
       </div>
-      <div class="bank-row">
-        <span class="bank-label">Banco</span>
-        <span class="bank-value">
-          <!-- ░░ REEMPLAZAR con nombre del banco ░░ -->
-          Banco XYZ
-        </span>
+
+      <!-- Pesos argentinos -->
+      <div id="panel-ar-pesos" class="bank-panel active">
+        <div class="bank-row">
+          <span class="bank-label">Titular</span>
+          <span class="bank-value">Victoria Martinez Zuviria</span>
+        </div>
+        <div class="bank-row">
+          <span class="bank-label">Banco</span>
+          <span class="bank-value">Santander</span>
+        </div>
+        <div class="bank-row">
+          <span class="bank-label">Alias</span>
+          <span class="bank-value" id="alias-ars">Toiaynachi</span>
+          <button class="copy-btn" onclick="copyText('alias-ars', this)" title="Copiar Alias">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+          </button>
+        </div>
+        <div class="bank-row">
+          <span class="bank-label">CBU</span>
+          <span class="bank-value" id="cbu-ars">0720081688000044413604</span>
+          <button class="copy-btn" onclick="copyText('cbu-ars', this)" title="Copiar CBU">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+          </button>
+        </div>
       </div>
-      <div class="bank-row">
-        <span class="bank-label">CBU</span>
-        <span class="bank-value" id="cbu-value">
-          <!-- ░░ REEMPLAZAR con CBU real ░░ -->
-          0000000000000000000000
-        </span>
-        <button class="copy-btn" onclick="copyText('cbu-value', this)" title="Copiar CBU">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
-        </button>
+
+      <!-- Dólares en Argentina -->
+      <div id="panel-ar-usd" class="bank-panel">
+        <div class="bank-row">
+          <span class="bank-label">Titular</span>
+          <span class="bank-value">Victoria Martinez Zuviria</span>
+        </div>
+        <div class="bank-row">
+          <span class="bank-label">Banco</span>
+          <span class="bank-value">Santander</span>
+        </div>
+        <div class="bank-row">
+          <span class="bank-label">Alias</span>
+          <span class="bank-value" id="alias-usd-ar">Toiaynachi</span>
+          <button class="copy-btn" onclick="copyText('alias-usd-ar', this)" title="Copiar Alias">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+          </button>
+        </div>
+        <div class="bank-row">
+          <span class="bank-label">CBU</span>
+          <span class="bank-value" id="cbu-usd-ar">0720081688000044413604</span>
+          <button class="copy-btn" onclick="copyText('cbu-usd-ar', this)" title="Copiar CBU">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+          </button>
+        </div>
       </div>
-      <div class="bank-row">
-        <span class="bank-label">Alias</span>
-        <span class="bank-value" id="alias-value">
-          <!-- ░░ REEMPLAZAR con alias real ░░ -->
-          ALIAS.CASAMIENTO
-        </span>
-        <button class="copy-btn" onclick="copyText('alias-value', this)" title="Copiar Alias">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
-        </button>
+
+      <!-- Dólares en USA -->
+      <div id="panel-us-usd" class="bank-panel">
+        <div class="bank-row">
+          <span class="bank-label">Beneficiario</span>
+          <span class="bank-value">Ignacio Schmidt</span>
+        </div>
+        <div class="bank-row">
+          <span class="bank-label">Banco</span>
+          <span class="bank-value">Community Federal Savings Bank</span>
+        </div>
+        <div class="bank-row">
+          <span class="bank-label">Cuenta</span>
+          <span class="bank-value" id="acct-us">8313775692</span>
+          <button class="copy-btn" onclick="copyText('acct-us', this)" title="Copiar cuenta">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+          </button>
+        </div>
+        <div class="bank-row">
+          <span class="bank-label">Routing (ACH/Wire)</span>
+          <span class="bank-value" id="routing-us">026073150</span>
+          <button class="copy-btn" onclick="copyText('routing-us', this)" title="Copiar routing">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+          </button>
+        </div>
+        <div class="bank-row">
+          <span class="bank-label">SWIFT / BIC</span>
+          <span class="bank-value" id="swift-us">CMFGUS33</span>
+          <button class="copy-btn" onclick="copyText('swift-us', this)" title="Copiar SWIFT">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+          </button>
+        </div>
+        <div class="bank-row">
+          <span class="bank-label">Dirección del banco</span>
+          <span class="bank-value" id="addr-us">89-16 Jamaica Ave, Woodhaven, NY 11421, US</span>
+          <button class="copy-btn" onclick="copyText('addr-us', this)" title="Copiar dirección">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+          </button>
+        </div>
       </div>
+
+      <!-- Euros en Europa -->
+      <div id="panel-eu-eur" class="bank-panel">
+        <div class="bank-row">
+          <span class="bank-label">Beneficiario</span>
+          <span class="bank-value">Ignacio Schmidt</span>
+        </div>
+        <div class="bank-row">
+          <span class="bank-label">Banco</span>
+          <span class="bank-value">Wise</span>
+        </div>
+        <div class="bank-row">
+          <span class="bank-label">Dirección del banco</span>
+          <span class="bank-value" id="addr-eu">Rue du Trône 100, 3rd floor, Brussels, 1050, Belgium</span>
+          <button class="copy-btn" onclick="copyText('addr-eu', this)" title="Copiar dirección">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+          </button>
+        </div>
+        <div class="bank-row">
+          <span class="bank-label">IBAN</span>
+          <span class="bank-value" id="iban-eu">BE89 9677 6962 9385</span>
+          <button class="copy-btn" onclick="copyText('iban-eu', this)" title="Copiar IBAN">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+          </button>
+        </div>
+        <div class="bank-row">
+          <span class="bank-label">SWIFT / BIC</span>
+          <span class="bank-value" id="swift-eu">TRWIBEB1XXX</span>
+          <button class="copy-btn" onclick="copyText('swift-eu', this)" title="Copiar SWIFT">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+          </button>
+        </div>
+      </div>
+
     </div>
   </div>
 
@@ -763,6 +888,13 @@
       if (e.target === e.currentTarget) closeModal(id);
     }
     function openGiftModal() { openModal('modal-gift'); }
+
+    function switchBankTab(panelId, btn) {
+      document.querySelectorAll('.bank-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.bank-panel').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('panel-' + panelId).classList.add('active');
+    }
     function openRsvpModal() {
       document.getElementById('rsvp-form-wrap').style.display = '';
       document.getElementById('rsvp-success').style.display   = 'none';
